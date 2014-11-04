@@ -48,11 +48,8 @@
 - hosts: local
   gather_facts: smart
 
-  vars:
-    - git_username: Benji Fisher
-    - git_usermail: bfisher@northpointdigital.com
-    - git_coreeditor: vim
-    - git_pushdefault: current
+  vars_files:
+    - vars/main.yml
 
   tasks:
   - name: Add taps to install PHP and composer.
