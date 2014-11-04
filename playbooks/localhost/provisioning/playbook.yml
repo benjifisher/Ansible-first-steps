@@ -69,7 +69,7 @@
   - name: Let Composer do its thing. (?)
     shell: /usr/local/bin/composer install chdir=/usr/local/Cellar/drush/HEAD/libexec
   - name: Download Drupal configuration for vim.
-    shell: /usr/local/bin/drush @none --no dl vimrc
+    shell: /usr/local/bin/drush @none --no dl --dev vimrc
   - name: Install recommended plugins for vim.
     shell: /usr/local/bin/drush @none vimrc-install
   - name: Create a personal git configuration file.
