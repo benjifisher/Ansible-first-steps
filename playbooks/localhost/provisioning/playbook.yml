@@ -1,0 +1,66 @@
+---
+# My first attempt at using ansible:  configure my new Mac.
+#
+# All the cool kids break up their ansible projects into modules and roles,
+# but for starters I will write a single playbook.
+#
+# These comments seem like a good place to record the manual steps I did
+# before I could execute this playbook:
+#
+# Upgrade OS X to the current version (10.9.5) through the App Store.
+#
+# Install Xcode through the App Store.
+#
+# Make sure the command-line tools (CLT) are installed.  As of OS X 10.9.5 and
+# Xcode 6.1, one way to do this is (thanks to
+# https://github.com/Homebrew/homebrew-php/issues/241)
+# $ xcode-select --install
+# and then confirm installation.
+#
+# Install Homebrew:  http://brew.sh/
+#
+# Install the one program I *really* need:  $brew install macvim
+#
+# Install ansible:  $ brew install ansible
+#
+# Create an ansible inventory at /usr/local/etc/ansible/hosts:
+#   [local]
+#   127.0.0.1
+#
+# By default, Ansible uses ssh to connect.  On OS X, this means you should
+# enable remote login (a.k.a. ssh) in System Preferences.  Then follow the
+# instructions at https://help.github.com/articles/generating-ssh-keys/ for
+# generating SSH keys and
+# $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+# so that you can connect to localhost without giving your password.
+#
+# I like the Homebrew approach of installing under /usr/local and not needing
+# to sudo all the time.  Next time around, I might change my mind and install
+# ansible first, with some sudo access, and then use it to install Homebrew.
+#
+# There must be a way to tell Homebrew to use the version of PHP already on
+# the system.  I should add a variable to specify which version of PHP to use.
+#
+# The drush-specific steps are based on
+# https://github.com/geerlingguy/ansible-role-drush (also avaiable at
+# https://galaxy.ansible.com/list#/roles/433).
+
+- hosts: local
+# gather_facts: yes
+
+  vars:
+
+  tasks:
+  - name: Add taps to install PHP and composer.
+    homebrew_tap: tap=homebrew/dupes,homebrew/versions,homebrew/php
+  - name: Install PHP 5.5.
+    homebrew: name=php55 update_homebrew=no
+  - name: Install composer.
+    homebrew: name=composer update_homebrew=no
+  - name: Install drush.
+    homebrew: name=drush install_options=--HEAD
+  - name: Update Homebrew meta data (?)
+    shell: /usr/local/bin/brew switch drush HEAD
+# Maybe this is already done by the drush formula.
+  - name: Let Composer do its thing. (?)
+    shell: /usr/local/bin/composer install chdir=/usr/local/Cellar/drush/HEAD/libexec
