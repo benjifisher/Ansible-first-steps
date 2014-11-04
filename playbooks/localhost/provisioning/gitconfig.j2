@@ -1,0 +1,47 @@
+# {{ ansible_managed }}
+
+# Mostly copied from https://github.com/gaspaio/ansible-devbox
+# Aliases from http://gitimmersion.com/lab_11.html
+# Global gitignore from https://help.github.com/articles/ignoring-files/
+# Some personal preferences:  no crlf settings, no alias for commit.
+
+[user]
+name = {{ git_username }}
+email = {{ git_usermail }}
+
+[color]
+ui = true
+
+[color "branch"]
+current = yellow reverse
+local = yellow
+remote = green
+
+[color "diff"]
+meta = cyan bold
+frag = yellow
+old = red
+new = green
+
+[color "status"]
+added = green
+changed = red
+untracked = cyan
+
+[core]
+editor = {{ git_coreeditor|default('vi') }}
+# autocrlf = input
+# safecrlf = true
+excludesfile = /Users/bfisher/.gitignore_global
+
+[push]
+default = {{ git_pushdefault|default('current') }}
+
+[alias]
+co = checkout
+# ci = commit
+st = status
+br = branch
+hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+type = cat-file -t
+dump = cat-file -p
