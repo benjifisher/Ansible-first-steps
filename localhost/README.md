@@ -13,40 +13,32 @@ Here are the manual steps I did before I could execute this playbook:
 1. Upgrade OS X to the current version (10.9.5) through the App Store.
 2. Install Xcode through the App Store.
 3. Make sure the command-line tools (CLT) are installed.  As of OS X 10.9.5
-   and Xcode 6.1, one way to do this is
-(thanks to
-[this issue](https://github.com/Homebrew/homebrew-php/issues/241)
-on the Homebrew-PHP issues queue)
-`$ xcode-select --install`
-and then confirm installation.
+   and Xcode 6.1, one way to do this is (thanks to
+   [this issue](https://github.com/Homebrew/homebrew-php/issues/241)
+   on the Homebrew-PHP issues queue)
+   `$ xcode-select --install`
+   and then confirm installation.
 4. Install [Homebrew](http://brew.sh/)
 5. Install the one program I *really* need:  `$ brew install macvim`
 6. Install Ansible:  `$ brew install ansible`
 7. Tell Ansible to save a log by adding `.ansible.cfg` in your home directory
    with the line
    `log_path = /usr/local/var/log/ansible.log`
-8. Create an Ansible inventory at `/usr/local/etc/ansible/hosts`
-
-[]()
-
-    [local]
-    127.0.0.1
-
-By default, Ansible uses ssh to connect.  On OS X, this means you should
-enable remote login (a.k.a. ssh) in System Preferences.  Then follow the
-[GitHub instructions](https://help.github.com/articles/generating-ssh-keys/)
-for generating SSH keys and
-
-    $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-
-so that you can connect to localhost without giving your password.
+8. By default, Ansible uses ssh to connect.  On OS X, this means you should do
+   the following so that you can connect to localhost without giving your
+   password:
+  1. Enable remote login (a.k.a. ssh) in System Preferences.
+  2. Follow the
+     [GitHub instructions](https://help.github.com/articles/generating-ssh-keys/)
+     for generating SSH keys.
+  3. `$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys`
 
 ## Running the playbook
 
 Once you have the prerequisites, edit the variables in `vars/main.yml` and
 then
 
-    $ ansible-playbook provisioning/playbook.yml
+    $ ansible-playbook -i hosts provisioning/playbook.yml
 
 ## What gets installed
 
