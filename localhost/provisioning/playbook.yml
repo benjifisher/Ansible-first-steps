@@ -9,6 +9,7 @@
   roles:
     - git-config
     - vim
+    - javascript
     - php
     - drush
     - vim-drupal
