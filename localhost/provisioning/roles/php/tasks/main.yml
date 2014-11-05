@@ -1,0 +1,7 @@
+---
+- name: Add taps to install PHP and composer.
+  homebrew_tap: tap=homebrew/dupes,homebrew/versions,homebrew/php
+- name: Install PHP 5.5.
+  homebrew: name=php55 update_homebrew=no
+- name: Install composer.
+  homebrew: name=composer update_homebrew=no

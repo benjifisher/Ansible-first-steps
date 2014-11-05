@@ -6,29 +6,9 @@
   vars_files:
     - vars/main.yml
 
-  tasks:
-  - name: Add taps to install PHP and composer.
-    homebrew_tap: tap=homebrew/dupes,homebrew/versions,homebrew/php
-  - name: Install PHP 5.5.
-    homebrew: name=php55 update_homebrew=no
-  - name: Install composer.
-    homebrew: name=composer update_homebrew=no
-  - name: Install drush.
-    homebrew: name=drush install_options=--HEAD
-  - name: Update Homebrew meta data (?)
-    shell: /usr/local/bin/brew switch drush HEAD
-# Maybe this is already done by the drush formula.
-  - name: Let Composer do its thing. (?)
-    shell: /usr/local/bin/composer install chdir=/usr/local/Cellar/drush/HEAD/libexec
-  - name: Download Drupal configuration for vim.
-    shell: /usr/local/bin/drush @none --no dl --dev vimrc
-  - name: Install recommended plugins for vim.
-    shell: /usr/local/bin/drush @none vimrc-install
-  - name: Create a personal git configuration file.
-    template:
-      src=templates/gitconfig.j2
-      dest=~/.gitconfig
-  - name: Create a personal global gitignore file.
-    template:
-      src=templates/gitignore_global.j2
-      dest=~/.gitignore_global
+  roles:
+    - git-config
+    - vim
+    - php
+    - drush
+    - vim-drupal

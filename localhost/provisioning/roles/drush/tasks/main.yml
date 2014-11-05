@@ -1,0 +1,8 @@
+---
+- name: Install drush.
+  homebrew: name=drush install_options=--HEAD
+- name: Update Homebrew meta data (?)
+  shell: /usr/local/bin/brew switch drush HEAD
+# Maybe this is already done by the drush formula.
+- name: Let Composer do its thing. (?)
+  shell: /usr/local/bin/composer install chdir=/usr/local/Cellar/drush/HEAD/libexec
