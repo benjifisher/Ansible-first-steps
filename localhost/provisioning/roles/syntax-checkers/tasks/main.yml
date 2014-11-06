@@ -1,6 +1,4 @@
 ---
-- name: Install node.js and npm.
-  homebrew: name=node state=present install_options=with-npm update_homebrew=no
 - name: Install js-lint.
   shell: PATH=$PATH:/usr/local/bin npm install jslint -g
 - name: Install js-yaml.

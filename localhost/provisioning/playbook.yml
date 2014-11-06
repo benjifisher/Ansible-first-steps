@@ -6,10 +6,13 @@
   vars_files:
     - vars/main.yml
 
+  pre_tasks:
+  - include: tasks/package-managers.yml
+
   roles:
     - git-config
     - vim
-    - javascript
+    - syntax-checkers
     - php
     - drush
     - vim-drupal
