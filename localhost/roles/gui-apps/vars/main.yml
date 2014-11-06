@@ -2,3 +2,9 @@
 gui_apps:
   - alfred
   - google-chrome
+  - sublime-text
+  - cyberduck
+  - sourcetree
+
+sublime_packages:
+  emmet-sublime: https://github.com/sergeche/emmet-sublime.git

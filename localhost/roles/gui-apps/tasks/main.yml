@@ -21,8 +21,16 @@
 
 - name: Install GUI applications using Homebrew Cask.
 # homebrew_cask: name=item state=present
-  shell: PATH=$PATH:/usr/local/bin brew cask install {{ item }}
+  shell: >
+    PATH=$PATH:/usr/local/bin brew cask install {{ item }}
   with_items: gui_apps
 
 - name: Alfred, play well with Cask.
-  shell: PATH=$PATH:/usr/local/bin brew cask alfred link
+  shell: >
+    PATH=$PATH:/usr/local/bin brew cask alfred link
+
+- name: Install packages for Sublime Text.
+  git: >
+    repo={{ item.value }}
+    dest="~/Library/Application Support/Sublime Text 2/Packages/"{{ item.key }}
+  with_dict: sublime_packages

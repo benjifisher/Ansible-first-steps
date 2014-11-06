@@ -6,3 +6,7 @@
 - name: Install js-yaml.
   shell: >
     PATH=$PATH:/usr/local/bin npm install js-yaml -g
+
+- name: Install CSS lint.
+  shell: >
+    PATH=$PATH:/usr/local/bin npm install csslint -g
