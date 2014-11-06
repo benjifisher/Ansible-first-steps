@@ -1,24 +1,4 @@
 ---
-- name: Tap the repo for Homebrew Cask.
-  homebrew_tap: >
-    name=phinze/cask
-    state=present
-
-- name: Install Cask using Homebrew.
-  homebrew: >
-    name=brew-cask
-    state=present
-    update_homebrew=no
-
-- name: Create /opt with suitable permissions.
-  file: >
-    path=/opt
-    state=directory
-    owner=root
-    group=wheel
-    mode=775
-  sudo: yes
-
 - name: Install GUI applications using Homebrew Cask.
 # homebrew_cask: name=item state=present
   shell: >

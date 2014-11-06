@@ -1,9 +1,39 @@
 ---
 - name: Check if Homebrew is installed.
-  stat: path=/usr/local/bin/brew follow=yes get_md5=no
+  stat: >
+    path=/usr/local/bin/brew
+    follow=yes
+    get_md5=no
   register: homebrew
+
 - name: Install Homebrew.
-  shell: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  shell: >
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   when: not homebrew.stat.exists
+
+- name: Tap the repo for Homebrew Cask.
+  homebrew_tap: >
+    name=phinze/cask
+    state=present
+
+- name: Install Cask using Homebrew.
+  homebrew: >
+    name=brew-cask
+    state=present
+    update_homebrew=no
+
+- name: Create /opt with suitable permissions.
+  file: >
+    path=/opt
+    state=directory
+    owner=root
+    group=wheel
+    mode=775
+  sudo: yes
+
 - name: Install node.js and npm.
-  homebrew: name=node state=present install_options=with-npm update_homebrew=no
+  homebrew: >
+    name=node
+    state=present
+    install_options=with-npm
+    update_homebrew=no
