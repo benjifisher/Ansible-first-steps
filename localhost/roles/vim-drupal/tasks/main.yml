@@ -1,5 +1,8 @@
 ---
 - name: Download Drupal configuration for vim.
-  shell: /usr/local/bin/drush @none --no dl --dev vimrc
+  shell: >
+    /usr/local/bin/drush @none --no dl --dev vimrc
+
 - name: Install recommended plugins for vim.
-  shell: /usr/local/bin/drush @none vimrc-install
+  shell: >
+    /usr/local/bin/drush @none vimrc-install

@@ -1,3 +1,5 @@
 ---
 - name: Install MacVim.
-  homebrew: name=macvim update_homebrew=no
+  homebrew: >
+    name=macvim
+    update_homebrew=no

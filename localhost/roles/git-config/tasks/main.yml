@@ -3,6 +3,7 @@
   template:
     src=gitconfig.j2
     dest=~/.gitconfig
+
 - name: Create a personal global gitignore file.
   template:
     src=gitignore_global.j2
