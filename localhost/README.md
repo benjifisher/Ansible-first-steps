@@ -44,7 +44,16 @@ then
 
 ## What gets installed
 
-Most things are installed using Homebrew under `/usr/local/bin`.
+GUI applications are installed uing Homebrew Cask under `~/Applications`:
+
+- Alfred
+- Chrome
+- Cyberduck
+- MacVim (under `/Applications`)
+- SourceTree
+- Sublime Edit 2
+
+Most command-line utilities are installed using Homebrew under `/usr/local/bin`.
 
 - PHP
 - composer
@@ -52,6 +61,10 @@ Most things are installed using Homebrew under `/usr/local/bin`.
 - Vim configuration for editing Drupal:  the
   [Vimrc project](https://drupal.org/project/vimrc)
 - some basic Git configuration files
+- node and npm
+- wget
+- PHP CodeSniffer and Drupal coding standards
+- Syntax checkers:  js-lint, js-yaml, csslint
 
 ## Further thoughts
 
