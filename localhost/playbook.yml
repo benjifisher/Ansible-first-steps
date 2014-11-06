@@ -10,6 +10,7 @@
   - include: tasks/package-managers.yml
 
   roles:
+    - cli
     - git-config
     - vim
     - syntax-checkers

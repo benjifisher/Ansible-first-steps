@@ -1,0 +1,7 @@
+---
+- name: Install CLI utilities using Homebrew.
+  homebrew: >
+    name={{ item }}
+    state=present
+    update_homebrew=no
+  with_items: utilities
