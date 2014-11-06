@@ -1,5 +1,8 @@
 ---
 - name: Install js-lint.
-  shell: PATH=$PATH:/usr/local/bin npm install jslint -g
+  shell: >
+    PATH=$PATH:/usr/local/bin npm install jslint -g
+
 - name: Install js-yaml.
-  shell: PATH=$PATH:/usr/local/bin npm install jslint -g
+  shell: >
+    PATH=$PATH:/usr/local/bin npm install js-yaml -g
