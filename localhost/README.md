@@ -38,7 +38,9 @@ Here are the manual steps I did before I could execute this playbook:
 Once you have the prerequisites, edit the variables in `vars/main.yml` and
 then
 
-    $ ansible-playbook -i hosts provisioning/playbook.yml
+    $ ansible-playbook --ask-sudo-pass -i provisioning/hosts provisioning/playbook.yml
+
+(You can use `-K`, the short form of `--ask-sudo-pass`, if you prefer.)  When you get the prompt `sudo password:`, enter your password.
 
 ## What gets installed
 
